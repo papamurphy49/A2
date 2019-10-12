@@ -112,11 +112,10 @@ def product_edit(request, pk):
        form = ProductForm(request.POST, instance=product)
        if form.is_valid():
            product = form.save()
-           # service.customer = service.id
            product.updated_date = timezone.now()
            product.save()
            products = Product.objects.filter(created_date__lte=timezone.now())
-           return render(request, 'crm/service_list.html', {'products': products})
+           return render(request, 'crm/product_list.html', {'products': products})
    else:
        # print("else")
        form = ProductForm(instance=product)
